@@ -657,6 +657,9 @@
     <br><br>Skapandet av standardprocedurer är enbart till att förenkla arbetet och förutsägbarheten. Precis som standardtaximönster på Arlanda är en bra fallback när det blir mycket, eller bra grund, men att det går alldeles utmärkt att taxa avvikande när det passar eller behövs!
   </div>
 
+  <!-- 3.1 -->
+  <h3>3.1 Förslag på förbättringar</h3>
+
   <p>Ett förslag för att förbättra hanteringen av helikoptertrafiken på Arlanda vore därför att ta inspiration av ENGM, EFHK och LFMN, ta hänsyn till våra begränsningar och mönster och skapa anpassade rutter och procedurer som kan publiceras i AIP så att både flygledare och piloter kan arbeta mer enhetligt, förutsägbart och säkert</p>
   <p>För detta föreslås att:</p>
   <ul>
@@ -679,152 +682,131 @@
     </div>
   </div>
 
-  <!-- 3.1 -->
-  <h3>3.1 Namngivna referenspunkter</h3>
-  <p>Följande punkter föreslås namnges och publiceras:</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Namn</th>
-        <th>Typ</th>
-        <th>Koordinat (WGS-84)</th>
-        <th>Anmärkning</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>MARKIM</td>
-        <td>VFR Holding</td>
-        <td>59°36.25'N / 18°04.09'E</td>
-        <td>Vänstervarv. Markims kyrka = cirkelns västra punkt</td>
-      </tr>
-      <tr>
-        <td>ODENSALA</td>
-        <td>VFR Holding</td>
-        <td>59°39.35'N / 17°50.85'E</td>
-        <td>Vänstervarv. Odensala kyrka = cirkelns östra punkt</td>
-      </tr>
-      <tr>
-        <td>TWR</td>
-        <td>VFR Holding*</td>
-        <td>59°39.0'N / 17°55.7'E</td>
-        <td>*Förslag – formalisering av informell hållplats vid TWR-byggnaden</td>
-      </tr>
-      <tr>
-        <td>VADA</td>
-        <td>VFR Reporting</td>
-        <td>59°35.44'N / 18°12.88'E</td>
-        <td>Östlig CTR-gräns</td>
-      </tr>
-      <tr>
-        <td>VASSUNDA</td>
-        <td>VFR Reporting</td>
-        <td>59°42.49'N / 17°44.71'E</td>
-        <td>Västlig CTR-gräns</td>
-      </tr>
-      <tr>
-        <td>SKEDVIKEN</td>
-        <td>VFR Reporting</td>
-        <td>59°46.44'N / 18°15.30'E</td>
-        <td>Nordlig CTR-gräns</td>
-      </tr>
-      <tr>
-        <td>VALLENTUNA</td>
-        <td>VFR Reporting</td>
-        <td>59°30.73'N / 18°00.98'E</td>
-        <td>Sydostlig CTR-gräns</td>
-      </tr>
-    </tbody>
-  </table>
 
   <!-- 3.2 -->
-  <h3>3.2 Förbättrad kartografi – En dedikerad helikopterkarta</h3>
-  <p>Det viktigaste första steget är att ta fram en dedikerad helikopterkarta för ESSA, likt ENGM och EFHK. Kartan bör:</p>
+  <h3>3.2 Förbättrad kartografi </h3>
+  <p>Befintlig VAC (Visual Approach Chart) för Arlanda är mer inriktad på IFR trafik som gör visuella inflygningar, eller fix-winged VFR:er än helikoptertrafik. Kartan överväldigas visuellt av hinder (master, kyrkor och annat).</p>
+  <p>Den har många siffror och information om navigationsmedel, men verkar inte anpassad för att hjälpa helikopterpiloter navigera inom ESSA CTR eller till/från FATO enligt de geografiska referenser eller procedurer ESSA flygledare brukar använda sig av.</p>
+
+  <div class="callout">
+    Utformningen av VAC-kartor styrs av ICAO Annex 4 - Aeronautical Charts (kapitel 12). Den innehåller vissa minimikrav och rekommendationer, men lämnar utöver dessa stor utrymme till att anpassa kartorna. 
+    <br><br><a href="ICAO-Annex-4-Aeronautical-Charts.pdf" target="_blank">ICAO Annex 4</a>
+  </div>
+
+  <p>Detta syns tydligt i andra länders VAC-kartor där kartorna anpassats mer specifikt till ändamål, och har framförallt ofta kompletteringskartor för t.ex. just helikoptertrafik</p>
+  <p>Genom följande punkter moderniseras kartan. Den anpassas till existerande trafikflöden, och ger mer lättläst visuell information, samt kompleterrande procedurer:</p>
   <ul>
-    <li>Ha en skala anpassad för helikoptrar (förslag: 1:50 000 eller bättre)</li>
-    <li>Visa Apron L / FATO 07/25 tydligt</li>
-    <li>Inkludera VFR-landmarks: kyrkor, sjöar (Fysingen, Garnsviken, Valloxen), samhällen (Märsta, Sigtuna, Vallentuna)</li>
-    <li>Rita ut definierade standardrutter som namngivna linjer</li>
-    <li>Markera alla namngivna waypoints och hållplatser</li>
-    <li>Visa MAX altitude-zoner (inre/yttre zon)</li>
+    <li>fler rapporteringspunkter som hjälper att reducera kommunikationen och standardisera flöden</li>
+    <li>införandet av "standardrutter". Dessa är INTE separerade från IFR trafik, men hjälper skapa förutsägbarhet samt förenkla klareringar och samordningar</li>
+    <li>inför mer relevant information och procedurer direkt i kartorna (t.ex 335ft minimum i CTR)</li>
+    <li>skapar en extra karta med mer detaljer kring in-/utflygningar till FATO för helikoptrar samt regler och procedurer kring dessa - även här för att öka säkerheten, skapa gemensamma förväntningar och föreklan förfaranden</li>
+    <li>genom att skapa en enkel visualisering med fokus på de verktyg ATCO och piloter är vana vid (taxiway X, Halmsjön, E4an, hålla vid tornet, och införandet av en ny referenspunkt (OSBY) förenklas kommunikationer mellan piloter och flygledare</li>
+    <li>den extra texten på COPTER-kartan förtydligar även kraven och förväntningar som finns på piloter respektive flygledare så att avvecklingen standardiseras och blir mer enhetlig</li>
   </ul>
 
+  <p>En än gång är det viktigt att påpeka att detta ersätter inte befintliga regler eller separationsansvar från varken piloter eller flygledare.</p>
 
   <!-- 3.3 -->
   <h3>3.3 Standardrutter – syfte och filosofi</h3>
   <p>Föreslagna avgångs- och ankomstrutter är standarder och förväntningsbilder, inte rigida klareringar.</p>
+  <p>4 nya punkter införs: TOWER, SIGTUNA, STAKET och OSBY</p>
+  <p>Syftet med dessa är att möjliggöra enkla och korta klareringar (på både svenska och engelska) till VFR:er, och främst helikoptrar (då dessa utgör en väldigt betydande del av Arlandas VFR trafik)</p>
+  <p>SIGTUNA och STAKET specifikt gör det lättare att klarera VFR:er som vill använda det som kallas för "Vattenvägen" av flygledare men som inte är ett officiellt och publicerat begrepp.</p>
+  <p>OSBY och TOWER införs för att standardisera förfarandet kring avgångar och ankomster till "Patria" (det som nu blir FATO 07/25)</p>
 
   <div class="info-box">
-    Standardrutterna anger förväntad väg och höjd. ATC kan alltid ge avvikande klaring vid behov – t.ex. vid trafikbelastning, väder eller prioriterade flygningar. Syftet är att pilot och ATCO delar grundläggande förväntningar om vad som ska hända, vilket möjliggör snabbare och säkrare handläggning av helikoptertrafiken till och från Patria.
+    Standardrutterna anger förväntad väg och i vissa fall höjder (som vid OSBY). ATC kan alltid ge avvikande klaring vid behov – t.ex. vid trafikbelastning, väder eller prioriterade flygningar. Syftet är att pilot och ATCO delar grundläggande förväntningar om vad som ska hända, vilket möjliggör snabbare och säkrare handläggning av helikoptertrafiken till och från Patria.
   </div>
 
-  <h4>Rutt Öst – FATO ↔ VADA (via MARKIM)</h4>
-  <table>
-    <thead><tr><th>Steg</th><th>Beskrivning</th><th>Höjd</th></tr></thead>
-    <tbody>
-      <tr><td>Avgång</td> <td>FATO → Markims kyrka (visuell ref. för MARKIM holding) → östlig kurs → VADA</td> <td>Stiga till 1 000–1 500 ft MSL</td></tr>
-      <tr><td>Ankomst</td><td>VADA → MARKIM → sista inflygning FATO från öster. Håll vid MARKIM om ATC instruerar.</td><td>≤1 500 ft MSL</td></tr>
-    </tbody>
-  </table>
+  <p>Standardrutterna som föreslås är tänkt att förenkla och standardisera förfarandet, delvis för passage vid R16, men framförallt för avgångar och ankomster till FATO:</p>
 
-  <h4>Rutt Sydost – FATO ↔ VALLENTUNA (via MARKIM)</h4>
+  <br>
+  <h4>VFR Rutt VADA – FATO ↔ OSBY ↔ (MARKIM) ↔ VADA</h4>
   <table>
     <thead><tr><th>Steg</th><th>Beskrivning</th><th>Höjd</th></tr></thead>
     <tbody>
-      <tr><td>Avgång</td> <td>FATO → Markims kyrka → sydostlig kurs → VALLENTUNA</td><td>Stiga till 1 000–1 500 ft MSL</td></tr>
-      <tr><td>Ankomst</td><td>VALLENTUNA → MARKIM → sista inflygning FATO från sydost. Håll vid MARKIM om ATC.</td><td>≤1 500 ft MSL</td></tr>
+      <tr><td>Avgång</td> <td>FATO → OSBY → (MARKIM om så önskas) → VADA</td> <td>Stiga till 500 ft MSL mot OSBY – därefter 1000 ft MSL mot MARKIM, och därefter 1500ft eller lägre mot VADA</td></tr>
+      <tr><td>Ankomst</td><td>VADA → (MARKIM vid behov) → OSBY → FATO. Håll vid OSBY (eller tidigare om så instruerad av ATC).</td><td>Som högst 1000 ft MSL vid MARKIM och 500 ft MSL vid OSBY (om inte klarerad annorlunda av ATC)</td></tr>
+      <tr>
+        <td>Notering</td>
+        <td>Vid in-/utflygning av FATO till/från OSBY, håll söder om X:et och håll öster om 01R/19L och dess förlängda linje. Anmäl till ATC om detta är ej möjligt.</td>
+        <td>(Markim ger sida mot trafik till/från 08/26)</td>
+      </tr>
     </tbody>
   </table>
+  
+  <br>
+  <h4>VFR Rutt VALENTUNA – FATO ↔  OSBY ↔ (MARKIM) ↔ VALLENTUNA</h4>
+  <table>
+    <thead><tr><th>Steg</th><th>Beskrivning</th><th>Höjd</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Avgång</td>
+        <td>FATO → OSBY → (MARKIM om så önskas) → VALLENTUNA</td>
+        <td>Stiga till 500 ft MSL mot OSBY – därefter 1000 ft MSL mot MARKIM, och därefter 1500ft eller lägre mot VALLENTUNA</td>
+      </tr>
+      <tr>
+        <td>Ankomst</td>
+        <td>VALLENTUNA → (MARKIM vid behov) → OSBY → FATO. Håll vid OSBY (eller tidigare om så instruerad av ATC).</td>
+        <td>Som högst 1000 ft MSL vid MARKIM och 500 ft MSL vid OSBY (om inte klarerad annorlunda av ATC)</td>
+      </tr>
+      <tr>
+        <td>Notering</td>
+        <td>Vid in-/utflygning av FATO till/från OSBY, håll söder om X:et och håll öster om 01R/19L och dess förlängda linje.
+          Anmäl till ATC om detta är ej möjligt.</td>
+        <td>(Markim ger sida mot trafik till/från 01R/19L)</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
 
-  <h4>Rutt Nord – FATO ↔ SKEDVIKEN (via ODENSALA)</h4>
+  <h4>VFR Rutt "Vattenvägen" – SIGTUNA ↔ STAKET (eller VASSUNDA ↔ STAKET)</h4>
   <table>
     <thead><tr><th>Steg</th><th>Beskrivning</th><th>Höjd</th></tr></thead>
     <tbody>
-      <tr><td>Avgång</td> <td>FATO → nordlig kurs via Odensala kyrka (visuell ref. ODENSALA holding) → SKEDVIKEN</td><td>Stiga till 1 000–2 500 ft MSL</td></tr>
-      <tr><td>Ankomst</td><td>SKEDVIKEN → sydlig kurs → ODENSALA → sista inflygning FATO. Håll vid ODENSALA om ATC.</td><td>≤3 000 ft MSL</td></tr>
+      <tr><td>Passage</td> <td>SIGTUNA / VASSUNDA → STAKET</td><td>1500 ft MSL eller lägre (500 ft MSL kan förväntas om 01L/19R används för reguljärtrafik)</td></tr>
+      <tr><td>Passage</td><td>STAKET → SIGTUNA / VASSUNDA.</td><td>1500 ft MSL eller lägre (500 ft MSL kan förväntas om 01L/19R används för reguljärtrafik)</td></tr>
+      <tr>
+        <td>Notering</td>
+        <td>Kom ihåg att informera om R16. VFR trafik bör undvika att flyga över tätort markerade på VAC. Namnet "Vattenvägen" används inte officiellt då den inte fungerar på engelska</td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
+  <br>
 
-  <h4>Rutt Väst – FATO ↔ VASSUNDA (via TWR, korsning RWY 19R)</h4>
+  <h4>Rutt Väst – FATO ↔ TOWER (korsa en eller flera banor) ↔ Västerut (SIGTUNA / VASSUNDA eller annat)</h4>
   <table>
     <thead><tr><th>Steg</th><th>Beskrivning</th><th>Höjd</th></tr></thead>
     <tbody>
-      <tr><td>Avgång</td> <td>FATO → västlig kurs → TWR holding point → invänta banakorsningsklaring → korsa RWY 19R → VASSUNDA</td><td>≤1 500 ft MSL</td></tr>
-      <tr><td>Ankomst</td><td>VASSUNDA → östlig kurs → ODENSALA (om sekvens) → TWR holding → banakorsningsklaring → FATO</td><td>≤3 000 ft MSL, håll vid TWR</td></tr>
+      <tr><td>Avgång</td> <td>FATO → klarering korsa 19L → TOWER → klarering korsa 19R → Västerut</td><td>500 ft MSL eller lägre från FATO till TOWER.</td></tr>
+      <tr><td>Ankomst</td><td>VASSUNDA/SIGTUNA → östlig kurs → (ODENSALA) → klarering korsa 19R → TOWER → klarering korsa 19L → FATO</td><td>500ft MSL vid TOWER och mot FATO efter TOWER.</td></tr>
+      <tr>
+        <td>Notering</td>
+        <td>Hålla söder om X:et vid behov</td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
+  <br>
+
+  <p>Andra rutter är möjliga. Dessa är enbart standardförfarandet. Dessa tar inte bort varken piloten eller flygledarens möjlighet att flyga andra mer direkt rutter när omständigheter tillåter. Då specificeras trafikvarv (höger/vänster) och trafik pekas ut precis som idag.</p>
 
   <!-- 3.4 -->
   <h3>3.4 Korsning av landningsbana</h3>
   <p>I linje med ENGM-principen föreslås att följande publiceras explicit:</p>
-  <p class="note"><span class="note-label">Regel:</span> Helikoptrar ska inte korsa någon landningsbana vid ESSA utan uttrycklig ATC-klaring, oavsett om publicerad rutt föreligger.</p>
-  <p>För RWY 19R/01L (den bana som västrutten korserar) föreslås TWR holding point som standardiserad väntplats för helikoptrar i avvaktan på korsningsklaring.</p>
-
+  <p class="note"><span class="note-label">Regel:</span> Helikoptrar ska inte korsa någon landningsbana (eller förängd linje / kort final av landningsbana i anslutning till flygplatsen, vid ESSA utan uttrycklig klarering, oavsett om publicerad rutt föreligger.</p>
+  
   <!-- 3.5 -->
-  <h3>3.5 Höjdregler</h3>
+  <h3>3.5 Förslag på nästa steg</h3>
   <table>
-    <thead><tr><th>Zon</th><th>Område</th><th>Max höjd MSL</th><th>Min höjd MSL</th></tr></thead>
+    <thead><tr><th>Åtgärd</th></tr></thead>
     <tbody>
-      <tr><td>Inre zon</td> <td>FATO ↔ MARKIM / ODENSALA</td>    <td>1 500 ft</td><td>335 ft (radargräns)</td></tr>
-      <tr><td>Yttre zon</td><td>MARKIM/ODENSALA ↔ CTR-gräns</td> <td>3 000 ft</td><td>335 ft (radargräns)</td></tr>
-    </tbody>
-  </table>
-
-  <!-- 3.6 -->
-  <h3>3.6 Kommunikationsfel (NORDO)</h3>
-  <p>Specifik NORDO-procedur för helikoptrar publiceras. Grundprincip: squawk 7600, försök nå ATC på alla frekvenser inkl. 121.5 MHz, undvik alla landningsbanor, direkt inflygning till FATO, titta efter ljussignaler från TWR.</p>
-
-  <!-- 3.7 -->
-  <h3>3.7 Föreslagna nästa steg</h3>
-  <table>
-    <thead><tr><th>Prioritet</th><th>Åtgärd</th><th>Tidsram</th></tr></thead>
-    <tbody>
-      <tr><td>Hög</td>   <td>Intern granskning av detta dokument, ESSA TWR/APP + LFV</td>     <td>Q2 2026</td></tr>
-      <tr><td>Hög</td>   <td>Formell definition av TWR holding point (namn + koordinat)</td>  <td>Q2 2026</td></tr>
-      <tr><td>Hög</td>   <td>Bekräfta FATO 07/25 koordinat när bygget är klart</td>           <td>2026</td></tr>
-      <tr><td>Medium</td><td>Beställ dedikerad helikopterkarta 1:50 000 (LFV Karttjänst)</td> <td>Q3 2026</td></tr>
-      <tr><td>Medium</td><td>AIP SUP med nya procedurer och waypoints</td>                    <td>Q3–Q4 2026</td></tr>
-      <tr><td>Låg</td>   <td>Permanent AIP-sektion AD 2 ESSA (VAC Heli el. AD 2.24)</td>     <td>2027</td></tr>
+      <tr><td>Intern granskning av detta dokument, ESSA Ledning / ROM</td></tr>
+      <tr><td>Granskning och genomgång med DFL och POL för feeedback och revision</td></tr>
+      <tr><td>Beställa av Swedavia / AIP uppdateringar och kartor för publicering</td></tr>
+      <tr><td>AIP SUP med nya procedurer och waypoints</td></tr>
+      <tr><td>Permanent AIP-sektion AD 2 ESSA (VAC Heli el. AD 2.24)</td></tr>
     </tbody>
   </table>
 
