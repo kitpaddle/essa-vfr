@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>ESSA — Helikopter- och VFR-procedurer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #1a1a2e; background: #fff; font-size: 14px; line-height: 1.6; }
+  .page { max-width: 780px; margin: 0 auto; padding: 60px 60px; }
+
+  /* Cover */
+  .cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; border-bottom: 3px solid #1a1a2e; page-break-after: always; padding-bottom: 60px; }
+  .cover-tag { font-size: 11px; letter-spacing: 3px; color: #888; text-transform: uppercase; margin-bottom: 32px; }
+  .cover-title { font-size: 42px; font-weight: 700; line-height: 1.15; margin-bottom: 10px; }
+  .cover-sub { font-size: 22px; color: #2a5db0; font-weight: 600; margin-bottom: 8px; }
+  .cover-subsub { font-size: 16px; color: #555; font-style: italic; margin-bottom: 40px; }
+  .draft-badge { display: inline-block; background: #c00000; color: #fff; font-weight: 700; font-size: 11px; letter-spacing: 2px; padding: 5px 14px; border-radius: 3px; margin-bottom: 32px; }
+  .meta-table { width: auto; margin: 0; border-collapse: collapse; font-size: 13px; }
+  .meta-table td { padding: 7px 16px 7px 0; border-bottom: 1px solid #eee; vertical-align: top; }
+  .meta-table td:first-child { font-weight: 600; color: #555; white-space: nowrap; padding-right: 24px; }
+
+  /* Sections */
+  .section { margin-top: 56px; }
+  h2 { font-size: 22px; font-weight: 700; margin-bottom: 6px; padding-bottom: 8px; border-bottom: 2px solid #e0e0e0; }
+  h3 { font-size: 16px; font-weight: 700; margin: 28px 0 8px; color: #2a5db0; }
+  h4 { font-size: 14px; font-weight: 600; margin: 22px 0 6px; color: #444; }
+  p { margin-bottom: 12px; color: #333; }
+  ul, ol { margin: 8px 0 14px 20px; color: #333; }
+  li { margin-bottom: 5px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+  th { background: #1a1a2e; color: #fff; padding: 9px 12px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; }
+  td { padding: 8px 12px; border-bottom: 1px solid #e8e8e8; vertical-align: top; }
+  tr:nth-child(even) td { background: #f9f9f9; }
+
+  /* Images */
+  .screenshot-wrap { margin: 24px 0; text-align: center; }
+  .screenshot-wrap img { max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .screenshot-caption { font-size: 12px; color: #888; margin-top: 8px; font-style: italic; }
+
+  /* Side-by-side image pair */
+  .img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+  .img-pair .screenshot-wrap { margin: 0; }
+
+  /* Callout box */
+  .callout { border-left: 4px solid #1a1a2e; background: #f5f6fa; padding: 14px 16px; margin: 20px 0; border-radius: 0 4px 4px 0; color: #333; }
+
+  /* Blue bordered philosophy box */
+  .info-box { border: 1px solid #1a1a2e; border-left: 5px solid #1a1a2e; background: #e8f0f8; padding: 16px 20px; margin: 20px 0; border-radius: 0 4px 4px 0; color: #1a1a2e; }
+
+  /* Labelled note line */
+  .note { margin: 8px 0 12px 20px; color: #333; font-style: italic; }
+  .note-label { font-weight: 700; font-style: normal; color: #1a1a2e; }
+
+  /* Airport fact cards */
+  .airport-facts { display: inline-block; background: #f8fafd; border: 1px solid #dde3ed; border-radius: 6px; padding: 10px 16px; margin: 4px 0 18px; }
+  .airport-facts table { margin: 0; font-size: 12px; width: auto; }
+  .airport-facts td { padding: 3px 20px 3px 0; border: none; background: none !important; }
+  .airport-facts td:first-child { font-weight: 600; color: #555; white-space: nowrap; }
+
+  /* VFR reference table */
+  tr.ref-cat td { background: #d4dff0; font-weight: 700; color: #1a1a2e; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; padding: 7px 12px; border-top: 2px solid #b0c0db; }
+  tr.ref-cat td:first-child { border-left: 4px solid #2a5db0; }
+  tr.sub-row td:first-child { color: #444; }
+  .check-yes { text-align: center; color: #2e7d32; font-weight: 700; }
+  .check-no  { text-align: center; color: #c62828; font-weight: 700; }
+  .check-na  { text-align: center; color: #aaa; }
+
+  /* Footer line */
+  .doc-footer { text-align: center; color: #bbb; font-size: 12px; font-style: italic; margin-top: 60px; padding-top: 24px; border-top: 1px solid #eee; }
+
+  /* Lightbox */
+  .lb-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; overflow: hidden; }
+  .lb-overlay.active { display: flex; }
+  .lb-overlay img { max-width: 88vw; max-height: 88vh; border-radius: 4px; box-shadow: 0 8px 48px rgba(0,0,0,0.6); transform-origin: center; user-select: none; cursor: zoom-in; will-change: transform; }
+  .lb-hint { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.55); font-size: 12px; pointer-events: none; letter-spacing: 0.5px; }
+  .screenshot-wrap img { cursor: zoom-in; transition: opacity 0.15s; }
+  .screenshot-wrap img:hover { opacity: 0.9; }
+
+  @media print {
+    .cover { page-break-after: always; min-height: auto; padding-top: 80px; }
+    .section { page-break-inside: avoid; }
+    body { font-size: 12px; }
+    .page { padding: 40px 50px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+
+<!-- ══ FRAMSIDA ════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-tag">ESSA ATC — Internt arbetsmaterial</div>
+  <div class="cover-title">ESSA Stockholm Arlanda</div>
+  <div class="cover-sub">Helikopter- och VFR-procedurer</div>
+  <div class="cover-subsub">Nuläge, jämförelse och förslag till standardisering</div>
+  <div class="draft-badge">INTERNT UTKAST — EJ PUBLICERAT</div>
+  <table class="meta-table">
+    <tr><td>Datum</td><td>2026-05-21</td></tr>
+    <tr><td>Status</td><td>Internt utkast för granskning</td></tr>
+    <tr><td>Avsedd mottagare</td><td>ESSA TWR ledning och WS</td></tr>
+    <tr><td>Nästa steg</td><td>Intern granskning → SOP → AIP-publicering</td></tr>
+  </table>
+</div>
+
+
+<!-- ══ INLEDNING ═══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>Inledning</h2>
+
+  <p>Antalet helikoptrar baserade på ESSA har ökat markant de senaste åren. Polisens helikopterenhet (NFC) och ambulanshelikoptern (DFL/HEMS) opererar numera regelbundet från Apron L – "Patria" – och volymen VFR-rörelser inom CTR:n är påtagligt högre än tidigare. En ny FATO 07/25 är under uppförande vid Patria och väntas tas i drift under 2026, vilket ytterligare formaliserar helikopteroperationerna på platsen.</p>
+
+  <p>I dagsläget saknas publicerade standardrutter för helikoptertrafiken. Det innebär att varje rörelse kräver en individuellt anpassad klaring – med tillhörande koordination mellan TWR och, ofta, APP för att hitta luckor i IFR-sekvenserna. Med ökande volymer är detta en växande belastning.</p>
+
+  <p>En analys av VFR-trafiken inom ESSA CTR genomfördes över tio veckor (2 mars – 10 maj 2026) och omfattar totalt 517 rörelser – i snitt 8 per dag, med ett max på 16 rörelser under en enskild dag. Fördelningen:</p>
+
+  <table>
+    <thead><tr><th>Operatör</th><th>Totalt</th><th>Till/Från PATRIA (Ramp L)</th></tr></thead>
+    <tbody>
+      <tr><td>POL (NFC Polisen)</td><td>282</td><td>282</td></tr>
+      <tr><td>DFL (Mediflight)</td><td>199</td><td>61</td></tr>
+      <tr><td>Övriga VFR</td><td>36</td><td>3</td></tr>
+    </tbody>
+  </table>
+
+  <p>Dokumentet analyserar dessa trafikmönster och jämför med hur tre liknande flygplatser – ENGM Oslo, EFHK Helsingfors och LFMN Nice – hanterar och dokumenterar sin helikoptertrafik. Baserat på detta läggs ett konkret förslag fram på standardiserade rutter, waypoints och procedurer anpassade för ESSA, som underlag inför en eventuell publicering i AIP Sverige.</p>
+</div>
+
+
+<!-- ══ SEKTION 1 ════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>1. Nuläge – Helikoptertrafik vid ESSA</h2>
+
+  <!-- 1.1 -->
+  <h3>1.1 Aktörer</h3>
+  <p>Tre aktörsgrupper dominerar VFR-trafiken inom ESSA CTR:</p>
+
+  <p><strong>Polisen – Nationellt Forensiskt Centrum (NFC)</strong><br>
+  282 rörelser under analysperioden, nästan samtliga med Apron L / Patria som start- eller destinationspunkt. Polisen är i praktiken baserad på Patria och flyger till/från CTR-gränsen i ett fåtal återkommande korridorer.</p>
+
+  <p><strong>DFL – Ambulanshelikopter (HEMS)</strong><br>
+  199 rörelser totalt. 61 av dessa har Patria som start- eller destinationspunkt. Resterande 138 rörelser är genomfarter eller flygningar till/från andra destinationer utan koppling till Patria.</p>
+
+  <p><strong>Övriga VFR</strong><br>
+  36 rörelser, varav 3 med Patria som start/destination. Merparten är genomfarter eller enstaka besök på andra delar av flygplatsen.</p>
+
+  <p style="font-size:12px;color:#888;text-align:center;margin-bottom:4px;">Fördelning av 517 VFR-rörelser — 2 mars till 10 maj 2026</p>
+  <canvas id="actor-chart" style="display:block;max-width:100%;margin:0 auto;"></canvas>
+
+  <!-- 1.2 -->
+  <h3>1.2 Apron L – "Patria" och ny FATO 07/25</h3>
+  <p>Helikoptrarna opererar primärt till och från Apron L på sydvästra delen av Arlanda, känt som "Patria". Platsen fungerar i dag utan formellt publicerad FATO eller publicerade rutter i AIP – operationerna sker på basis av individuella klareringar och informella rutiner.</p>
+  <p>En ny FATO 07/25 är under uppförande i anslutning till Apron L och förväntas tas i drift under 2026. Ibruktagandet är ett naturligt tillfälle att formalisera de rutter och procedurer som länge saknats.</p>
+
+  <!-- 1.3 -->
+  <h3>1.3 Trafikmönster – Polisen (NFC)</h3>
+
+  <div class="img-pair">
+    <div class="screenshot-wrap">
+      <img src="ESSA_Patria_POL_ctr.png" alt="Polisens helikopter – spårloggar inom ESSA CTR">
+      <div class="screenshot-caption">Figur 1a: Polisens helikopter (NFC) – samtliga rörelser inom ESSA CTR</div>
+    </div>
+    <div class="screenshot-wrap">
+      <img src="ESSA_Patria_POL_zoom.png" alt="Polisens helikopter – zoom Apron L / Patria">
+      <div class="screenshot-caption">Figur 1b: Zoom Apron L – polisens helikopter, konvergering vid Patria</div>
+    </div>
+  </div>
+
+  <p>Rörelsemönstret är enhetligt och tydligt. Spårloggarna visar tre huvudsakliga korridorer:</p>
+  <ul>
+    <li><strong>Öst</strong> – mot Markim/Vada, tät och väldefinierad korridor öster om flygplatsen</li>
+    <li><strong>Syd-sydost</strong> – mot Vallentuna, ibland via Markim</li>
+    <li><strong>Väst-sydväst</strong> – mot Sigtuna, oftast via tornet, ibland norr om 19R-tröskeln</li>
+  </ul>
+  <p>Därutöver syns tre mindre korridorer:</p>
+  <ul>
+    <li><strong>Syd-sydväst</strong> – mot Upplands Väsby / E4:an</li>
+    <li><strong>Väst-nordväst</strong> – mot Vassunda, ibland via tornet, ibland norr om 19R-tröskeln</li>
+    <li><strong>Nordost</strong> – mot Skedviken, ibland med mer ostlig eller nordlig initialkurs för att undvika trafik på 08/26</li>
+  </ul>
+  <p>Zoomen på Patria visar att trafiken i stor utsträckning sker parallellt med bana 08/26, och håller sig öster om förlängningen av 01R/19L. De fyra dominerande riktningarna, i storleksordning, är:</p>
+  <ol>
+    <li><strong>Syd-sydost (~160°)</strong> – den klart största flödesriktningen, mot/från Vallentuna-hållet</li>
+    <li><strong>Öst mot Vada</strong> – näststörsta flödet, längs den täta östkorridoren</li>
+    <li><strong>Syd-sydväst parallellt med 01R/19L</strong> – mot Upplands Väsby / E4:an</li>
+    <li><strong>Mot tornet, söder om X:et</strong> – här varierar spåren något; en del går söder om tornet, andra norr om, för att sedan korsa mot Sigtuna</li>
+  </ol>
+  <p>I ett fåtal fall syns spår som avviker norrut eller nordväst och passerar norr om 19R-tröskeln – troligen för att undvika trafik på startbanan.</p>
+
+  <!-- 1.4 -->
+  <h3>1.4 Trafikmönster – DFL (ambulans)</h3>
+
+  <div class="img-pair">
+    <div class="screenshot-wrap">
+      <img src="ESSA_Patria_DFL_ctr.png" alt="DFL – spårloggar inom ESSA CTR, Patria-rörelser">
+      <div class="screenshot-caption">Figur 2a: DFL – rörelser med start/destination Patria inom ESSA CTR</div>
+    </div>
+    <div class="screenshot-wrap">
+      <img src="ESSA_Patria_DFL_zoom.png" alt="DFL – zoom Apron L / Patria">
+      <div class="screenshot-caption">Figur 2b: Zoom Apron L – DFL, origo/destination vid Patria</div>
+    </div>
+  </div>
+
+  <p>De 61 DFL-rörelserna med Patria som start/destination visar ett mönster som nära liknar POL:s två vanligaste korridorer: mot Vada (öst) och mot Vallentuna (syd-sydost). Inga tydliga avvikelser från dessa två riktningar syns. Precis som polisen håller sig DFL-trafiken väl söder om X:et (08/26) och öster om förlängningen av 19L/01R.</p>
+
+  <div class="screenshot-wrap">
+    <img src="ESSA_Overflight_DFL.png" alt="DFL – genomfarter och övriga rörelser inom ESSA CTR">
+    <div class="screenshot-caption">Figur 3: DFL – de 138 rörelserna utan koppling till Patria (genomfarter och andra destinationer)</div>
+  </div>
+
+  <p>De 138 DFL-rörelserna utan koppling till Patria visar tydliga genomfartsmönster till/från Stockholm respektive till/från Norrtälje. Destinationerna inom CTR är däremot spridda. En stor majoritet av dessa flygningar sker under prioritet – att försöka standardisera ruttmönster för DFL-trafik på prio vore motsägelsefullt, då de har prioritet och följer den väg uppdraget kräver snarare än en standardrutt. Det kan dock noteras att Märsta är en relativt vanlig destination, och att vattenvägen används som rutt för att runda R16.</p>
+
+  <!-- 1.5 -->
+  <h3>1.5 Trafikmönster – Övriga VFR</h3>
+
+  <div class="img-pair">
+    <div class="screenshot-wrap">
+      <img src="ESSA_Patria_OTHER_ctr.png" alt="Övriga VFR – spårloggar inom ESSA CTR">
+      <div class="screenshot-caption">Figur 4a: Övriga VFR – samtliga rörelser inom ESSA CTR</div>
+    </div>
+    <div class="screenshot-wrap">
+      <img src="ESSA_Patria_OTHER_zoom.png" alt="Övriga VFR – zoom Apron L / Patria">
+      <div class="screenshot-caption">Figur 4b: Zoom Apron L – övriga VFR, enstaka rörelser vid Patria</div>
+    </div>
+  </div>
+
+  <div class="screenshot-wrap">
+    <img src="ESSA_Overflight_OTHER.png" alt="Övriga VFR – genomfarter och övriga rörelser">
+    <div class="screenshot-caption">Figur 5: Övriga VFR – genomfarter och rörelser utan koppling till Patria</div>
+  </div>
+
+  <p>Det tydligaste mönstret för övriga VFR är att Vallentuna och området kring Vada är de vanligaste rutterna. Även vattenvägen används – liksom för DFL – för att runda R16. Utöver dessa stråk är mönstret mer spritt, vilket speglar att dessa flygningar har varierande ursprung och destination.</p>
+
+  <div class="callout">
+    Sammantaget domineras VFR-trafiken vid ESSA av polisens och DFL:s Patria-baserade rörelser. Dessa följer återkommande korridorer som är tydliga i spårdata men saknar formell status i AIP. Utan publicerade standardrutter hanteras varje rörelse individuellt – med tillhörande koordination och tidsåtgång.
+  </div>
+
+  <!-- 1.6 -->
+  <h3>1.6 Nuvarande AIP-dokumentation</h3>
+
+    <p>För ESSA - Stockholm Arlanda återfinns i dagsläget endast följande dokumentation gällande VFR- och helikoptertrafik:</p>
+      
+      <div
+        style="border-left:3px solid #aab;background:#f7f8fc;padding:12px 16px;margin:12px 0;border-radius:0 4px 4px 0;font-family:'Lora',Georgia,serif;font-size:13px;">
+        <p style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:8px;font-family:'Inter',system-ui,sans-serif;">
+          AIP Sverige — AD 2 ESSA, §2.16 Helicopter Landing Area</p>
+          <p style="color:#444;margin-bottom:6px;">Any RWY</p>
+        <p style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:8px;font-family:'Inter',system-ui,sans-serif;">
+          AIP Sverige — AD 2 ESSA, §5 VFR Trafik</p>
+        <p style="color:#444;margin-bottom:16px;">5 VFR trafik</p>
+        <p style="color:#444;margin-bottom:16px;">5.1 STOCKHOLM TMA<br>Procedurerna i ENR 1.2 ska tillämpas.</p>
+        <p style="color:#444;margin-bottom:0;">5.2 STOCKHOLM/Arlanda CTR<br>Procedurer i ENR 1.2 mom 4 ska tillämpas. För in- och utpasseringspunkter se ESSA VAC.</p>
+      </div>
+    <p>Förutom dessa korta texter finns även en Visuellinflygningskarta - VAC, som kan ses här nedan.</p>
+
+  <div class="screenshot-wrap">
+    <img src="img_essa_vac.png" alt="ESSA VAC – AIP Sverige" data-pdf="ESSA VAC.pdf">
+    <div class="screenshot-caption">Figur 6: ESSA VAC-karta ur AIP Sverige — standardskala 1:250 000, utan helikopterrutter, waypoints eller höjdanvisningar för VFR-trafik</div>
+  </div>
+  
+  <p>Nedanstående tabell listar de geografiska VFR-referenser som flygledare på Arlanda förväntas kunna och använda sig av vid hantering av VFR trafik. ✓ anger att referensen går att identifiera på nuvarande ESSA VAC-karta; ✗ att den saknas.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin:16px 0;">
+    <table style="margin:0;">
+      <thead><tr><th></th><th>Referens</th><th style="text-align:center;width:44px;">VAC</th></tr></thead>
+      <tbody>
+        <tr class="ref-cat"><td colspan="3">1. VFR Rapporteringspunkter</td></tr>
+        <tr><td>1.1</td><td>VADA</td>              <td class="check-yes">✓</td></tr>
+        <tr><td>1.2</td><td>VASSUNDA</td>          <td class="check-yes">✓</td></tr>
+        <tr><td>1.3</td><td>SKEDVIKEN</td>         <td class="check-yes">✓</td></tr>
+        <tr><td>1.4</td><td>VALLENTUNA</td>        <td class="check-yes">✓</td></tr>
+        <tr class="ref-cat"><td colspan="3">2. Hållplatser</td></tr>
+        <tr><td>2.1</td><td>MARKIM</td>            <td class="check-yes">✓</td></tr>
+        <tr><td>2.2</td><td>ODENSALA</td>          <td class="check-yes">✓</td></tr>
+        <tr class="ref-cat"><td colspan="3">3. Kyrkor (inga namn)</td></tr>
+        <tr><td>3.1</td><td>Markims kyrka</td>     <td class="check-yes">✓</td></tr>
+        <tr><td>3.2</td><td>Odensala kyrka</td>    <td class="check-yes">✓</td></tr>
+        <tr><td>3.3</td><td>Danmark Kyrka</td>     <td class="check-yes">✓</td></tr>
+        <tr><td>3.4</td><td>Husby Långhundra</td>  <td class="check-yes">✓</td></tr>
+        <tr><td>3.5</td><td>Skepptuna</td>         <td class="check-yes">✓</td></tr>
+        <tr><td>3.6</td><td>Lunda</td>             <td class="check-yes">✓</td></tr>
+        <tr><td>3.7</td><td>Kårsta kyrka</td>      <td class="check-yes">✓</td></tr>
+        <tr><td>3.8</td><td>Husby Årlinghundra</td><td class="check-yes">✓</td></tr>
+        <tr><td>3.9</td><td>Frösunda</td>          <td class="check-yes">✓</td></tr>
+        <tr class="ref-cat"><td colspan="3">4. Navaids</td></tr>
+        <tr><td>4.1</td><td>ARL (DVOR/DME)</td>   <td class="check-no">✗</td></tr>
+        <tr><td>4.2</td><td>ANW (DME)</td>         <td class="check-no">✗</td></tr>
+        <tr><td>4.3</td><td>ANE (DME)</td>         <td class="check-no">✗</td></tr>
+        <tr><td>4.4</td><td>ASE (DME)</td>         <td class="check-no">✗</td></tr>
+        <tr><td>4.5</td><td>ASW (DME)</td>         <td class="check-no">✗</td></tr>
+        <tr><td>4.6</td><td>WA (DME)</td>          <td class="check-no">✗</td></tr>
+        <tr class="ref-cat"><td colspan="3">5. Flygfält</td></tr>
+        <tr><td>5.1</td><td>Vassunda Flygfält</td> <td class="check-no">✗</td></tr>
+        <tr><td>5.2</td><td>Hova Flygfält</td>     <td class="check-no">✗</td></tr>
+        <tr><td>5.3</td><td>Vallentuna Flygfält</td><td class="check-no">✗</td></tr>
+      </tbody>
+    </table>
+
+    <table style="margin:0;">
+      <thead><tr><th></th><th>Referens</th><th style="text-align:center;width:44px;">VAC</th></tr></thead>
+      <tbody>
+        <tr class="ref-cat"><td colspan="3">6. Samhällen</td></tr>
+        <tr><td>6.1</td><td>Märsta</td>                        <td class="check-yes">✓</td></tr>
+        <tr><td>6.2</td><td>Sigtuna</td>                       <td class="check-no">✗</td></tr>
+        <tr><td>6.3</td><td>Knivsta</td>                       <td class="check-no">✗</td></tr>
+        <tr><td>6.4</td><td>Gottröra</td>                      <td class="check-no">✗</td></tr>
+        <tr><td>6.5</td><td>Upplands Väsby</td>                <td class="check-yes">✓</td></tr>
+        <tr><td>6.6</td><td>Alsike</td>                        <td class="check-no">✗</td></tr>
+        <tr><td>6.7</td><td>Rosersberg</td>                    <td class="check-no">✗</td></tr>
+        <tr><td>6.9</td><td>Vallentuna (ort)</td>              <td class="check-yes">✓</td></tr>
+        <tr class="ref-cat"><td colspan="3">7. Vatten</td></tr>
+        <tr><td>7.1</td><td>Fysingen</td>                      <td class="check-no">✗</td></tr>
+        <tr><td>7.2</td><td>Garnsviken</td>                    <td class="check-no">✗</td></tr>
+        <tr><td>7.3</td><td>Sigtunafjärden</td>                <td class="check-no">✗</td></tr>
+        <tr><td>7.4</td><td>Valloxen</td>                      <td class="check-no">✗</td></tr>
+        <tr><td>7.5</td><td>Halmsjön</td>                      <td class="check-no">✗</td></tr>
+        <tr><td>7.6</td><td>Vattenvägen</td>                   <td class="check-no">✗</td></tr>
+        <tr class="ref-cat"><td colspan="3">8. Vägar</td></tr>
+        <tr><td>8.1</td><td>E4:an</td>                         <td class="check-no">✗</td></tr>
+        <tr><td>8.2</td><td>Väg 77</td>                        <td class="check-no">✗</td></tr>
+        <tr><td>8.3</td><td>Väg 273</td>                       <td class="check-no">✗</td></tr>
+        <tr class="ref-cat"><td colspan="3">9. Flygplatsinfrastruktur</td></tr>
+        <tr><td>9.1</td><td>Apron L / Patria (FATO 07/25)</td> <td class="check-na">–</td></tr>
+        <tr><td>9.2</td><td>TWR-byggnaden</td>                  <td class="check-na">–</td></tr>
+        <tr><td>9.3</td><td>Olunda-sektorn</td>                 <td class="check-no">✗</td></tr>
+        <tr><td>9.4</td><td>R16 Kungsängen</td>                 <td class="check-yes">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12px;color:#888;margin-top:2px;">✓ = identifierbar på ESSA VAC &nbsp;·&nbsp; ✗ = saknas på ESSA VAC &nbsp;·&nbsp; – = ej tillämpligt</p>
+
+  <p>En VAC karta kan inte förväntas innehålla all geografisk information, men den information som anses
+    viktig för att etablera en gemensam lägesuppfattning mellan pilot och ATCO bör prioriteras.</p>
+
+    <div class="callout">
+      Om det i praktiken finns vedertagna rutter, höjder, geografiska referenspunkter och procedurer som används ofta av
+      flygledare för att avveckla trafiken är det säkerhetshöjande att dessa publiceras i text eller på relevanta kartor så att piloter och flygledare delar samma kunskap och lägesuppfattning.
+    </div>
+  
+
+</div>
+
+
+<!-- ══ SEKTION 2 ════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>2. Hur jämförbara flygplatser hanterar helikoptertrafik</h2>
+
+  <p>Att hantera VFR, särskilt helikoptertrafik, är inte unik till Arlanda. Genom att analysera hur andra flygplatser utformat procedurer, dokument och kartor kan vi se möjliga förbättringar som även ESSA skulle kunna ta del av.</p>
+  
+  <p>Nedan följer tre konkreta exempel, två är nordeuropeiska flygplatser med liknande trafikmängder, och en är en fransk flygplats med betydlig mer helikoptertrafik.</p>
+
+  <!-- 2.1 ENGM -->
+  <h3>2.1 ENGM Oslo Gardermoen – Helikopterkarta</h3>
+  <div class="airport-facts"><table>
+    <tr><td>Rörelser/dag</td>      <td>~600</td></tr>
+    <tr><td>HKP-rörelser/dag</td>  <td>5–15</td></tr>
+    <tr><td>AD elevation</td>      <td>682 ft</td></tr>
+    <tr><td>CTR</td>               <td>Klass D, GND – 2 500 ft</td></tr>
+    <tr><td>VFR-punkter</td>       <td>6 rapporteringspunkter, 2 holdings</td></tr>
+    <tr><td>FATO</td>              <td>01/19</td></tr>
+  </table></div>
+  <p>Oslo Gardemoen flygplats bär många likheter till Arlanda i antal rörelser (både IFR rörelser och helikooptertrafik). Väsentliga skillnader är att den är belägen ca 500ft högre än Arlanda och är i klass D luftrum.</p>
+  
+  <p>ENGM AIP innehåller redan i textformat väsentlig mer information för VFR-trafik, och helikoptertrafik i synnerhet.</p>
+  <p>Utdrag ur AIP Norge AD 2.20 samt 2.22:</p>
+  <div
+    style="border-left:3px solid #aab;background:#f7f8fc;padding:12px 16px;margin:12px 0;border-radius:0 4px 4px 0;font-family:'Lora',Georgia,serif;font-size:13px;">
+    <p style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:8px;font-family:'Inter',system-ui,sans-serif;">AIP Norge — AD 2.20 ENGM, §13 Helicopter Traffic</p>
+    <p style="color:#444;margin-bottom:16px;">13.1 FATO/TLOF forms a separate part of the manoeuvring area under the
+      responsibility of ATC. REF Helicopter Route Chart for further information for flying to and from FATO/TLOF.</p>
+    <p style="color:#444;margin-bottom:16px;">13.2 RWY AVBL for helicopter operations above D-value 17, and SAR, AMB, MIL
+      and POL after prior coordination with ATC.</p>
+    <p style="color:#444;margin-bottom:16px;">13.3 Parking and ground manoeuvring, including hovertaxiing, with helicopter
+      will normally take place west of runway 01L/19R. Other areas may be used for parking helicopters on rescue- and
+      ambulance missions, and after prior coordination for helicopter on other missions for national authorities.</p>
+    <p style="color:#444;margin-bottom:16px;">13.4 MIL helicopters to/from the military terminal shall follow the rules
+      described in Aircraft Parking/Docking Chart - Military terminal.</p>
+    <p style="color:#444;margin-bottom:0;">13.5 Due to the close proximity to RWY 01L/19R ARR FATO 01 and DEP FATO 19,
+      pilots must monitor turns and flightpath carefully according to Helicopter Route Chart. The proximity to the RWY
+      does not allow independent operations and may cause DLA for helicopter to and from FATO.</p>
+  </div>
+  
+  <div
+    style="border-left:3px solid #aab;background:#f7f8fc;padding:12px 16px;margin:12px 0;border-radius:0 4px 4px 0;font-family:'Lora',Georgia,serif;font-size:13px;">
+    <p style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:8px;font-family:'Inter',system-ui,sans-serif;">AIP Norge — AD 2.22 ENGM, §8 VFR Flights Within Gardermoen CTR</p>
+    <p style="color:#444;margin-bottom:6px;">8 &nbsp;VFR flights within Gardermoen CTR</p>
+    <p style="color:#444;margin-bottom:4px;">8.1 Procedures for VFR flights within Gardermoen CTR</p>
+    <p style="color:#444;margin-bottom:8px;margin-left:1em;">a) Special VFR flight, VFR night and transit flight in ENGM
+      CTR are generally not permitted. ATC may, under certain circumstances, grant permission for such flights, based on
+      prior approval.</p>
+    <p style="color:#444;margin-bottom:8px;margin-left:1em;">b) Permission to cross overhead the runways or extended
+      centerlines can not be expected.</p>
+    <p style="color:#444;margin-bottom:8px;margin-left:1em;">c) ATC clearance shall be obtained from Gardermoen TWR.</p>
+    <p style="color:#444;margin-bottom:8px;margin-left:1em;">d) Two-way radio communication shall be established before
+      flight takes place in CTR. REF ENGM AD 2.18.</p>
+    <p style="color:#444;margin-bottom:16px;margin-left:1em;">e) Suspension of VFR flights may be expected under limited
+      visibility or low ceiling.</p>
+    <p style="color:#444;margin-bottom:16px;">8.2 Geographical positions for VFR ARR and DEP is specified in AD 2 ENGM 6 -
+      1 Visual Approach Chart.</p>
+    <p style="color:#444;margin-bottom:5px;">8.3 To avoid conflict with TFC using the parallel RWY, the following
+      procedures apply, unless otherwise instructed or cleared by ATC:</p>
+    <p style="color:#444;margin-bottom:8px;margin-left:1em;">- TFC using RWY 01R, 19R or FATO 19 shall make all turns
+      associated with take-off and landing to the right,</p>
+    <p style="color:#444;margin-bottom:8px;margin-left:1em;">- the airspace between the parallel RWY, including the
+      airspace between extended edge lines of RWY, must not be penetrated during APP or DEP,</p>
+    <p style="color:#444;margin-bottom:8px;margin-left:1em;">- permission to cross overhead the RWY or extended CL may not
+      be expected,</p>
+    <p style="color:#444;margin-bottom:16px;margin-left:1em;">- minor delays, for traffic to/from FATO, may be expected
+      due to wake vortex separation RWY 01L/19R.</p>
+    <p style="color:#444;margin-bottom:5px;">8.4 ARR VFR flight shall establish two-way radio communication with
+      Gardermoen TWR no later than passing the following reporting points:</p>
+    <p style="color:#444;margin-bottom:8px;margin-left:1em;">- Råsjøen, 601230N 0104810E</p>
+    <p style="color:#444;margin-bottom:16px;margin-left:1em;">- Vormsund, 600918N 0112505E</p>
+    <p style="color:#444;margin-bottom:16px;">8.5 When cleared DCT RWY base leg or final, ARR ACFT shall join final within
+      1 NM FM RWY THR.<br>When cleared DCT final FATO, helicopter shall be established on final track parallel to and west
+      of RWY 01L/19R.</p>
+    <p style="color:#444;margin-bottom:16px;">8.6 DEP VFR flights shall request start-up from Gardermoen Delivery.</p>
+    <p style="color:#444;margin-bottom:16px;">8.7 Standard turn direction after DEP is towards Nannestad when RWY 01L/19R
+      or FATO 01/19 is used, and towards Nordkisa when RWY 01R/19L is used.</p>
+    <p style="color:#444;margin-bottom:16px;">8.8 After take-off, commence turn to cleared position/direction at 1200 FT
+      (1700 FT for ACFT with MTOM above 5700 KG), EXC helicopters flying VFR.</p>
+    <p style="color:#444;margin-bottom:0;">8.9 SAR services and ACFT on a police or MIL mission are exempted from the
+      provisions regarding Special VFR, VFR night and transit flights; but shall at all times adhere to the instructions
+      and clearances given by ATC.</p>
+  </div>
+  <br>
+  <p>Utöver kapitlarna i AIP har ENGM två kartor för VFR trafik. En "klassisk" Visuellinflygninskarta (VAC), och ytterligare en karta för hur just Helikoptrar - var och hur de ska hålla i närheten av flygplatsen och hur de ska flyg in/ut ur FATO.</p>
+
+  <div class="img-pair">
+    <div class="screenshot-wrap">
+      <img src="img_engm_vac.png" alt="ENGM VAC-karta" data-pdf="ENGM_VAC.pdf">
+      <div class="screenshot-caption">Figur 3a: ENGM Oslo – VAC-karta ur AIP Norge</div>
+    </div>
+    <div class="screenshot-wrap">
+      <img src="img_engm.png" alt="ENGM dedikerad helikopterkarta" data-pdf="ENGM_Heli.pdf">
+      <div class="screenshot-caption">Figur 3b: ENGM Oslo – Dedikerad helikopterkarta 1:17 500 (AIP Norge AD 2 ENGM 6-2).</div>
+    </div>
+  </div>
+
+
+  <!-- 2.2 EFHK -->
+  <h3>2.2 EFHK Helsingfors Vantaa – VFR Copter Routes</h3>
+  <div class="airport-facts"><table>
+    <tr><td>Rörelser/dag</td>      <td>~500</td></tr>
+    <tr><td>HKP-rörelser/dag</td>  <td>5–10</td></tr>
+    <tr><td>AD elevation</td>      <td>180 ft</td></tr>
+    <tr><td>CTR</td>               <td>Klass D, GND – 1 300 ft</td></tr>
+    <tr><td>VFR-punkter</td>       <td>5 rapporteringspunkter, 4 holdings</td></tr>
+    <tr><td>FATO</td>              <td>16/34</td></tr>
+  </table></div>
+  <p>Helsinki Vantaa publicerar lite mer begränsad text än Oslo med hänsyn till VFR:er och Helikoptertrafik.
+
+  <div style="border-left:3px solid #aab;background:#f7f8fc;padding:12px 16px;margin:12px 0;border-radius:0 4px 4px 0;font-family:'Lora',Georgia,serif;font-size:13px;">
+    <p style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:8px;font-family:'Inter',system-ui,sans-serif;">AIP Finland — AD 2 EFHK, §6 Helicopter Operations</p>
+    <p style="color:#444;margin-bottom:16px;">6.1 Operating on FATO H16/H34</p>
+    <p style="color:#444;margin-bottom:8px;margin-left:1em;">6.1.1. FATO H16/H34 is within ATC service boundary. When performing take-offs from H16 or landings on H34, pilots must exercise caution and visually confirm the absence of obstacles in the front sector.</p>
+    <p style="color:#444;margin-bottom:0;margin-left:1em;">Outside the ATC service boundary at APN 4 and between taxiways CL and CN there may be ground traffic unknown to ATC. REF AIP, EFHK AD 2.5 - 1 (APDC).</p>
+  </div>
+
+  <div style="border-left:3px solid #aab;background:#f7f8fc;padding:12px 16px;margin:12px 0;border-radius:0 4px 4px 0;font-family:'Lora',Georgia,serif;font-size:13px;">
+    <p style="font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:8px;font-family:'Inter',system-ui,sans-serif;">AIP Finland — AD 2 EFHK, §8 Training, Inspection and VFR Flights Within EFHK CTR/TMA</p>
+    <p style="color:#444;margin-bottom:8px;">8.1. Training and inspection IFR and VFR flights, local IFR and VFR flights and flights with hot-air balloons in EFHK TMA are subject to ATC permission and will be accepted for justified reasons only. The decisions for granting a permission will be based on the current and expected traffic situation and the judgement of the level of noise impact caused by such activity.</p>
+    <p style="color:#444;margin-bottom:5px;">The following shall be complied:</p>
+    <p style="color:#444;margin-bottom:5px;margin-left:1em;">- The schedule and program of the flight shall be coordinated with Helsinki-Vantaa approach supervisor, TEL +358 9 6151 3324.</p>
+    <p style="color:#444;margin-bottom:5px;margin-left:1em;">- A flight plan in written shall be filed. The flight program shall be indicated in the flight plan, item 18 RMK.</p>
+    <p style="color:#444;margin-bottom:5px;margin-left:1em;">- The flight will be accepted the traffic situation permitting. During rush-hours at Helsinki-Vantaa flights are subject to limitations.</p>
+    <p style="color:#444;margin-bottom:16px;margin-left:1em;">- In case of VFR flight departing inside the EFHK CTR, the pilot shall request clearance before airborne on EFHK TWR frequency or by calling +358 9 6151 3322.</p>
+    <p style="color:#444;margin-bottom:8px;">8.2 Additional restrictions during parallel approaches</p>
+    <p style="color:#444;margin-bottom:8px;">Training and inspection IFR and VFR flights, local (IFR and VFR) and any VFR flights are not allowed at EFHK CTR and TMA during parallel approaches.</p>
+    <p style="color:#444;margin-bottom:5px;">Excluding:</p>
+    <p style="color:#444;margin-bottom:5px;margin-left:1em;">- IFR flights, subject to restrictions, solely either departing from EFHK or arriving at EFHK, which have received an airport slot; taking in account the published performance requirements during independent parallel operations</p>
+    <p style="color:#444;margin-bottom:5px;margin-left:1em;">- SAR or authorized flights</p>
+    <p style="color:#444;margin-bottom:5px;margin-left:1em;">- State aircraft</p>
+    <p style="color:#444;margin-bottom:5px;margin-left:1em;">- Emergency situations</p>
+    <p style="color:#444;margin-bottom:0;margin-left:1em;">- Flights which do not affect conducting the parallel approaches.</p>
+  </div>
+
+  <p>Däremot har de en tydligare och mer detaljrik Visuellinflygningskarta (VAC) samt en mer detaljrik karta för Helikoptrar. Den visar tydligt gällande höjder, rapporteringspunkter, geografiska referenser och lokala sektorer inom CTR. Framförallt ritas även ut helikopterspecifika standardrutter till/från FATO.</p>
+  <p></p>De har även en dedikerad IFR Inflygningskarta för Helikopter på 04R. (visas ej här men kan ses i deras eAIP)</p>
+
+  <div class="img-pair">
+    <div class="screenshot-wrap">
+      <img src="img_efhk_vac.png" alt="EFHK VAC-karta" data-pdf="EFHK_VAC.pdf">
+      <div class="screenshot-caption">Figur 4a: EFHK Helsingfors – VAC-karta ur AIP Finland</div>
+    </div>
+    <div class="screenshot-wrap">
+      <img src="img_efhk.png" alt="EFHK VFR Copter Routes" data-pdf="EFHK_Heli.pdf">
+      <div class="screenshot-caption">Figur 4b: EFHK Helsingfors – VFR Copter Routes (EFHK AD 2.14-3). Namngivna reporting points med holding-mönster, FATO-inset och stadsnamn som VFR-referens.</div>
+    </div>
+  </div>
+
+  <!-- 2.3 LFMN -->
+  <h3>2.3 LFMN Nice Côte d'Azur – Detaljerade helikopterprocedurer</h3>
+  <div class="airport-facts"><table>
+    <tr><td>Rörelser/dag</td>      <td>~800 (sommartopp)</td></tr>
+    <tr><td>HKP-rörelser/dag</td>  <td>50–150</td></tr>
+    <tr><td>AD elevation</td>      <td>12 ft</td></tr>
+    <tr><td>CTR</td>               <td>Klass D, GND – 3 500 ft</td></tr>
+    <tr><td>VFR-punkter</td>       <td>20 rapporteringspunkter</td></tr>
+    <tr><td>FATO</td>              <td>MS och ME (2 st)</td></tr>
+  </table></div>
+  <p>Nice Côte d'Azur är en intressant jämförelse då den har ungefärligt likadana trafiksiffror för IFR trafik, men betydligt större mängd helikoptertrafik</p>
+  <p>Detta återspeglas i deras många och väldetaljerade procedurer och dokument som blir hela 8 kartor och 7 sidor text i AIP för att skapa ett gediget underlag för hur helikoptrar förväntas flyga inom CTR samt till/från flygplatsen</p>
+  <p><i>Klicka på valfri bild nedan för att se text-delen av LFMN AIP</i></p>
+
+  <div class="img-pair">
+    <div class="screenshot-wrap">
+      <img src="img_lfmn_p3.png" alt="LFMN helikopter VAC" data-pdf="LFMN_VAC_Heli_2.pdf">
+      <div class="screenshot-caption">Figur 5: LFMN Nice – Helikopter-VAC med alla rutter inlagda. Notera färgkodade korridorer, höjdmarkeringar och synliga städer/kust som VFR-referens.</div>
+    </div>
+    <div class="screenshot-wrap">
+      <img src="img_lfmn2_p1.png" alt="LFMN helikopter inflygning" data-pdf="LFMN_VAC_Heli_2.pdf">
+      <div class="screenshot-caption">Figur 6: LFMN Nice – Specifik helikopter-inflygningskarta med detaljerade ruttlinjer, höjder och namngivna punkter.</div>
+    </div>
+  </div>
+
+  <p>Procedurerna är gedigna med både tydliga kartor med reelvant information, och kompletterande detaljer i text i AIP:n där:</p>
+  <ul>
+    <li>De olika geografiska referenspunkter är väldetaljerade (med tydliga beskrivningar)</li>
+    <li>Höjder, restriktioner och riktningar på rutter till/från olika in/ut passeringspunkter är tydliga</li>
+    <li>Vad som gäller i olika tider (dag/nmörker) och väder (VFR/SVFR)</li>
+    <li>Vilka restriktioner och andra speciella regler eller undantag som finns</li>
+    <li>Specifika transponderkoder för olika destinationer så att andra flygledare i området kan enkelt veta var trafiken ska för tysta samordningar</li>
+  </ul>
+
+  <!-- 2.4 Jämförelse -->
+  <h3>2.4 Jämförelse mellan Arlanda och andra flygplatser</h3>
+  
+  <p>En viktigt påminnelse är att syftet med procedurer och dokumentation är enbart att bibehålla hög säkerhet vid ökade trafikmängder.</p>
+  <p>När flygplatser får ökad IFR trafik byggs dem ut och nya procedurer och standardförfaranden (SID:ar, taximönster, flöden, rutiner) införs som beskrivs med kartor och text i AIP:n. På så sätt kan växande trafikmängder hanteras med bibehållen eller ökad säkerhet.</p>
+  <p>På samma sätt kan man se att flygplatser med växande helikoptertrafik kan också uppdatera, anpassa och införa nya standarder, flöden och rutiner för att kunna hantera säkert fler rörelser.</p>
+  <p>I denna del jämförs därför de skillnader mellan Arlanda och ovanlistade 3 flygplatser för att se vad som skulle kunna göras annorlunda på Arlanda för att hantera fler helikoptrar.</p>
+
+  <table style="table-layout:fixed">
+    <colgroup>
+      <col style="width:20%">
+      <col style="width:20%">
+      <col style="width:20%">
+      <col style="width:20%">
+      <col style="width:20%">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Funktion</th>
+        <th>ESSA Arlanda</th>
+        <th>ENGM Oslo</th>
+        <th>EFHK Vantaa</th>
+        <th>LFMN Nice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- VAC Karta -->
+      <tr class="ref-cat"><td>VAC Karta</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr class="sub-row"><td>Skala</td>                        <td>1:250 000</td><td>1:300 000</td><td>1:200 000</td><td>1:225 000</td></tr>
+      <tr class="sub-row">
+        <td>Rapporterings-punkter (CRP = obligatoriska)</td>
+        <td>4 st (inga icke CRP)</td>
+        <td>8 st (varav 4 CRP)</td>
+        <td>9 st (varav 5 CRP)</td>
+        <td>20 st (varav 18 CRP)</td>
+      </tr>
+      <tr class="sub-row">
+        <td>Geografiska referenser</td>
+        <td>Kyrkor (inga namn), sjöar (inga namn), Tätorter (bara 2 med namn), tågspår, högspännings-ledningar, vägar (inga namn)</td>
+        <td>Kyrkor (inga namn), sjöar (1 namn), tätorter (10 med namn), vägar (inga namn)</td>
+        <td>Inga kyrkor, sjöar (inga namn), tätorter (inga namn), tågspår, vägar (inga namn), sjukhus, flygfält, RC-klubbar, sektorer för skydd av APCH</td>
+        <td>Inga kyrkor, vattendrag (med namn), tätorter (med namn), tågspår, vägar, högspännings-ledningar, helipads, RC-klubbar, terränghöjder</td>
+      </tr>
+      <tr class="sub-row">
+        <td>Procedurer vid COMM FAIL</td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>✓</td>
+      </tr>
+      <tr class="sub-row">
+        <td>Höjdrestriktioner</td>
+        <td>CTR-höjder</td>
+        <td>CTR-höjder, Holding-maxhöjder</td>
+        <td>CTR-höjder, Holding min-maxhöjder, minhöjd i CTR (700ft)</td>
+        <td>CTR-höjder, terränghöjder</td>
+      </tr>
+      <tr class="sub-row">
+        <td>Utmarkerade rutter</td>
+        <td>–</td>
+        <td>–</td>
+        <td>–</td>
+        <td>Tydligt utmarkerade rutter för både VFR och HKP-trafik, både till/från flygplatsen eller för passage.</td>
+      </tr>
+
+      <!-- Detaljerad COPTER-karta -->
+      <tr class="ref-cat">
+        <td>Detaljerad COPTER-karta</td>
+        <td>–</td>
+        <td>✓</td>
+        <td>✓</td>
+        <td>✓</td>
+      </tr>
+      <tr class="sub-row">
+        <td>Upplösning</td>
+        <td>–</td>
+        <td>1:17 500</td>
+        <td>u/n</td>
+        <td>1:30 000</td>
+      </tr>
+      <tr class="sub-row">
+        <td>Kartor</td>
+        <td>–</td>
+        <td>1 st (in-/utflygning FATO)</td>
+        <td>2 st (rutter i CTR + in-/utflygning FATO)</td>
+        <td>7 st (rutter + in-/utflygning FATO + rampkarta runt FATO)</td>
+      </tr>
+
+      <!-- AIP Text -->
+      <tr class="ref-cat"><td>AIP Text</td><td>-</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr class="sub-row">
+        <td>Detaljerade procedurer på marken</td>
+        <td>–</td>
+        <td>Kapitlar 13.1, 13.3, 13.4 och 13.5 samt 8.6</td>
+        <td>Kapitlar 6.1 samt 8.1</td>
+        <td>Flera detaljerade paragrafer, om ramp, parkering, hovring, krav och klareringar</td>
+      </tr>
+      <tr class="sub-row">
+        <td>Särskilda regler i luften</td>
+        <td>–</td>
+        <td>Kapitlar 13.2, 8.1 - 8.5 samt 8.7 - 9</td>
+        <td>Kapitel 8.2 samt textdetaljer på kartorna</td>
+        <td>Flera detaljerade paragrafer om rutterna till/från FATO samt inom CTR, beskrivningar på Reporting Points, regler för inpassage/utpassage inkl. höjder och transponderkoder</td>
+      </tr>
+      <tr class="sub-row">
+        <td>Höjdrestriktioner, väderminima eller avståndskrav</td>
+        <td>–</td>
+        <td>Kapitlar 8.1 (SVFR), 8.5 (where to join FATO final), 8.8 (höjd) samt 8.9 (SVFR)</td>
+        <td>I text-delarna på kartan finns höjdrestriktioner (både min-max)</td>
+        <td>Mängder med tydligsa siffror och specifikationer på höjder och avstånd och väderminima både i text och på kartorna vid alla faser av en VFR flygning</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    Det blir tydligt i denna tabell att ESSA har en mindre mängd upprättade procedurer och standarder för hanteringen av helikoptrar jämfört med dessa flygplatser.
+  </div>
+</div>
+
+
+<!-- ══ SEKTION 3 ════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <h2>3. Förslag – Öka standardiseringen av helikoptertrafik på ESSA</h2>
+  <br>
+  <p>Standarder och inarbetade publicerade procedurer som piloter kan ta del av ökar förutsägbarheten. Och förutsägbarhet gör det lättare för både piloter och flygledare att dela samma lägesbild och förenkla de klareringar som behövs för att uppnå de flöden man eftersträvar.</p>
+
+  <div class="callout">
+    Notera att införandet av procedurer och standarder innebär INTE att helikoptrar ej får klareras på direktrutter eller avvikande mönster.
+    <br><br>Skapandet av standardprocedurer är enbart till att förenkla arbetet och förutsägbarheten. Precis som standardtaximönster på Arlanda är en bra fallback när det blir mycket, eller bra grund, men att det går alldeles utmärkt att taxa avvikande när det passar eller behövs!
+  </div>
+
+  <p>Ett förslag för att förbättra hanteringen av helikoptertrafiken på Arlanda vore därför att ta inspiration av ENGM, EFHK och LFMN, ta hänsyn till våra begränsningar och mönster och skapa anpassade rutter och procedurer som kan publiceras i AIP så att både flygledare och piloter kan arbeta mer enhetligt, förutsägbart och säkert</p>
+  <p>För detta föreslås att:</p>
+  <ul>
+    <li>se över våra rapporteringspunkter (anpassa de till våra trafikflöden och in-/utflygningar från FATO),</li>
+    <li>se över möjligheten att införa en eller flera standardrutter inom CTR (för passage eller till/från FATO),</li>
+    <li>förtydliga vissa procedurer (vilken frekvens klarering tas på, hålla 335 ft i CTR, vad gäller in/ut FATO, vad gäller på ramper i FATOs närhet, m.m.),</li>
+    <li>se till att denna information publiceras i text och/eller kartor i AIP så att piloter och flygledare delar samma lägesbild och förväntningar</li>
+  </ul>
+
+  <p>Exempel och utkast på ovanstående visas nedan. Kom ihåg att dessa är förslag. Avsteg från standardrutter och procedurer är tillåtna. <strong>Dessa är till för att öka förutsägbarheten, skapa en gemensam lägesbild och gemensamma förväntningar för att förstärka säkerheten. INTE för att låsa trafiken på specifika rutter eller spår om andra och bättre lösningar finns för den specifika situationen.</strong></p>
+
+  <div class="screenshot-wrap">
+    <img src="img_essa_vac_lowres.png" alt="Förslag ny ESSA VAC-karta" data-pdf="img_essa_vac_lowres.pdf">
+    <div class="screenshot-caption">Figur: Utkast – förslag på ny och förbättrad VAC-karta för ESSA. Klicka för att öppna PDF.</div>
+  </div>
+
+  <!-- 3.1 -->
+  <h3>3.1 Namngivna referenspunkter</h3>
+  <p>Följande punkter föreslås namnges och publiceras:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Namn</th>
+        <th>Typ</th>
+        <th>Koordinat (WGS-84)</th>
+        <th>Anmärkning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>MARKIM</td>
+        <td>VFR Holding</td>
+        <td>59°36.25'N / 18°04.09'E</td>
+        <td>Vänstervarv. Markims kyrka = cirkelns västra punkt</td>
+      </tr>
+      <tr>
+        <td>ODENSALA</td>
+        <td>VFR Holding</td>
+        <td>59°39.35'N / 17°50.85'E</td>
+        <td>Vänstervarv. Odensala kyrka = cirkelns östra punkt</td>
+      </tr>
+      <tr>
+        <td>TWR</td>
+        <td>VFR Holding*</td>
+        <td>59°39.0'N / 17°55.7'E</td>
+        <td>*Förslag – formalisering av informell hållplats vid TWR-byggnaden</td>
+      </tr>
+      <tr>
+        <td>VADA</td>
+        <td>VFR Reporting</td>
+        <td>59°35.44'N / 18°12.88'E</td>
+        <td>Östlig CTR-gräns</td>
+      </tr>
+      <tr>
+        <td>VASSUNDA</td>
+        <td>VFR Reporting</td>
+        <td>59°42.49'N / 17°44.71'E</td>
+        <td>Västlig CTR-gräns</td>
+      </tr>
+      <tr>
+        <td>SKEDVIKEN</td>
+        <td>VFR Reporting</td>
+        <td>59°46.44'N / 18°15.30'E</td>
+        <td>Nordlig CTR-gräns</td>
+      </tr>
+      <tr>
+        <td>VALLENTUNA</td>
+        <td>VFR Reporting</td>
+        <td>59°30.73'N / 18°00.98'E</td>
+        <td>Sydostlig CTR-gräns</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 3.2 -->
+  <h3>3.2 Förbättrad kartografi – En dedikerad helikopterkarta</h3>
+  <p>Det viktigaste första steget är att ta fram en dedikerad helikopterkarta för ESSA, likt ENGM och EFHK. Kartan bör:</p>
+  <ul>
+    <li>Ha en skala anpassad för helikoptrar (förslag: 1:50 000 eller bättre)</li>
+    <li>Visa Apron L / FATO 07/25 tydligt</li>
+    <li>Inkludera VFR-landmarks: kyrkor, sjöar (Fysingen, Garnsviken, Valloxen), samhällen (Märsta, Sigtuna, Vallentuna)</li>
+    <li>Rita ut definierade standardrutter som namngivna linjer</li>
+    <li>Markera alla namngivna waypoints och hållplatser</li>
+    <li>Visa MAX altitude-zoner (inre/yttre zon)</li>
+  </ul>
+
+
+  <!-- 3.3 -->
+  <h3>3.3 Standardrutter – syfte och filosofi</h3>
+  <p>Föreslagna avgångs- och ankomstrutter är standarder och förväntningsbilder, inte rigida klareringar.</p>
+
+  <div class="info-box">
+    Standardrutterna anger förväntad väg och höjd. ATC kan alltid ge avvikande klaring vid behov – t.ex. vid trafikbelastning, väder eller prioriterade flygningar. Syftet är att pilot och ATCO delar grundläggande förväntningar om vad som ska hända, vilket möjliggör snabbare och säkrare handläggning av helikoptertrafiken till och från Patria.
+  </div>
+
+  <h4>Rutt Öst – FATO ↔ VADA (via MARKIM)</h4>
+  <table>
+    <thead><tr><th>Steg</th><th>Beskrivning</th><th>Höjd</th></tr></thead>
+    <tbody>
+      <tr><td>Avgång</td> <td>FATO → Markims kyrka (visuell ref. för MARKIM holding) → östlig kurs → VADA</td> <td>Stiga till 1 000–1 500 ft MSL</td></tr>
+      <tr><td>Ankomst</td><td>VADA → MARKIM → sista inflygning FATO från öster. Håll vid MARKIM om ATC instruerar.</td><td>≤1 500 ft MSL</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Rutt Sydost – FATO ↔ VALLENTUNA (via MARKIM)</h4>
+  <table>
+    <thead><tr><th>Steg</th><th>Beskrivning</th><th>Höjd</th></tr></thead>
+    <tbody>
+      <tr><td>Avgång</td> <td>FATO → Markims kyrka → sydostlig kurs → VALLENTUNA</td><td>Stiga till 1 000–1 500 ft MSL</td></tr>
+      <tr><td>Ankomst</td><td>VALLENTUNA → MARKIM → sista inflygning FATO från sydost. Håll vid MARKIM om ATC.</td><td>≤1 500 ft MSL</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Rutt Nord – FATO ↔ SKEDVIKEN (via ODENSALA)</h4>
+  <table>
+    <thead><tr><th>Steg</th><th>Beskrivning</th><th>Höjd</th></tr></thead>
+    <tbody>
+      <tr><td>Avgång</td> <td>FATO → nordlig kurs via Odensala kyrka (visuell ref. ODENSALA holding) → SKEDVIKEN</td><td>Stiga till 1 000–2 500 ft MSL</td></tr>
+      <tr><td>Ankomst</td><td>SKEDVIKEN → sydlig kurs → ODENSALA → sista inflygning FATO. Håll vid ODENSALA om ATC.</td><td>≤3 000 ft MSL</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Rutt Väst – FATO ↔ VASSUNDA (via TWR, korsning RWY 19R)</h4>
+  <table>
+    <thead><tr><th>Steg</th><th>Beskrivning</th><th>Höjd</th></tr></thead>
+    <tbody>
+      <tr><td>Avgång</td> <td>FATO → västlig kurs → TWR holding point → invänta banakorsningsklaring → korsa RWY 19R → VASSUNDA</td><td>≤1 500 ft MSL</td></tr>
+      <tr><td>Ankomst</td><td>VASSUNDA → östlig kurs → ODENSALA (om sekvens) → TWR holding → banakorsningsklaring → FATO</td><td>≤3 000 ft MSL, håll vid TWR</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 3.4 -->
+  <h3>3.4 Korsning av landningsbana</h3>
+  <p>I linje med ENGM-principen föreslås att följande publiceras explicit:</p>
+  <p class="note"><span class="note-label">Regel:</span> Helikoptrar ska inte korsa någon landningsbana vid ESSA utan uttrycklig ATC-klaring, oavsett om publicerad rutt föreligger.</p>
+  <p>För RWY 19R/01L (den bana som västrutten korserar) föreslås TWR holding point som standardiserad väntplats för helikoptrar i avvaktan på korsningsklaring.</p>
+
+  <!-- 3.5 -->
+  <h3>3.5 Höjdregler</h3>
+  <table>
+    <thead><tr><th>Zon</th><th>Område</th><th>Max höjd MSL</th><th>Min höjd MSL</th></tr></thead>
+    <tbody>
+      <tr><td>Inre zon</td> <td>FATO ↔ MARKIM / ODENSALA</td>    <td>1 500 ft</td><td>335 ft (radargräns)</td></tr>
+      <tr><td>Yttre zon</td><td>MARKIM/ODENSALA ↔ CTR-gräns</td> <td>3 000 ft</td><td>335 ft (radargräns)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 3.6 -->
+  <h3>3.6 Kommunikationsfel (NORDO)</h3>
+  <p>Specifik NORDO-procedur för helikoptrar publiceras. Grundprincip: squawk 7600, försök nå ATC på alla frekvenser inkl. 121.5 MHz, undvik alla landningsbanor, direkt inflygning till FATO, titta efter ljussignaler från TWR.</p>
+
+  <!-- 3.7 -->
+  <h3>3.7 Föreslagna nästa steg</h3>
+  <table>
+    <thead><tr><th>Prioritet</th><th>Åtgärd</th><th>Tidsram</th></tr></thead>
+    <tbody>
+      <tr><td>Hög</td>   <td>Intern granskning av detta dokument, ESSA TWR/APP + LFV</td>     <td>Q2 2026</td></tr>
+      <tr><td>Hög</td>   <td>Formell definition av TWR holding point (namn + koordinat)</td>  <td>Q2 2026</td></tr>
+      <tr><td>Hög</td>   <td>Bekräfta FATO 07/25 koordinat när bygget är klart</td>           <td>2026</td></tr>
+      <tr><td>Medium</td><td>Beställ dedikerad helikopterkarta 1:50 000 (LFV Karttjänst)</td> <td>Q3 2026</td></tr>
+      <tr><td>Medium</td><td>AIP SUP med nya procedurer och waypoints</td>                    <td>Q3–Q4 2026</td></tr>
+      <tr><td>Låg</td>   <td>Permanent AIP-sektion AD 2 ESSA (VAC Heli el. AD 2.24)</td>     <td>2027</td></tr>
+    </tbody>
+  </table>
+
+  <div class="doc-footer">
+    Slut på dokument – ESSA Helikopter/VFR SOP v0.1 – Internt utkast
+  </div>
+</div>
+
+
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('actor-chart');
+  if (!canvas) return;
+
+  const dpr = window.devicePixelRatio || 1;
+  const W = 600, H = 290;
+  canvas.width  = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const segs = [
+    { label: 'POL – till/från Patria',      n: 282, color: '#00b4d8' },
+    { label: 'DFL – till/från Patria',      n: 61,  color: '#f77f00' },
+    { label: 'DFL – genomfart / övriga',    n: 138, color: '#ffd4a0' },
+    { label: 'Övriga – genomfart / övriga', n: 33,  color: '#d4aaee' },
+    { label: 'Övriga – till/från Patria',   n: 3,   color: '#9b59b6' },
+  ];
+  const total = segs.reduce((s, d) => s + d.n, 0);
+  const cx = 145, cy = 145, r = 122;
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Slices
+    let a = -Math.PI / 2;
+    for (const seg of segs) {
+      const sweep = (seg.n / total) * 2 * Math.PI;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, r, a, a + sweep);
+      ctx.closePath();
+      ctx.fillStyle = seg.color;
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+      a += sweep;
+    }
+
+    // Legend
+    ctx.font = '13px Inter, system-ui, sans-serif';
+    const lx = 304;
+    const lineH = 36;
+    const startY = (H - segs.length * lineH) / 2 + 14;
+    segs.forEach((seg, i) => {
+      const y = startY + i * lineH;
+      ctx.fillStyle = seg.color;
+      ctx.fillRect(lx, y - 11, 14, 14);
+      ctx.fillStyle = '#333';
+      ctx.fillText(seg.label + '  (' + seg.n + ' — ' + Math.round(seg.n / total * 100) + '%)', lx + 22, y + 1);
+    });
+  }
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(draw);
+  } else {
+    draw();
+  }
+})();
+</script>
+
+<div class="lb-overlay" id="lb-overlay">
+  <img id="lb-img" src="" alt="">
+  <div class="lb-hint">Scroll to zoom &nbsp;·&nbsp; Drag to pan &nbsp;·&nbsp; Click image to cycle zoom &nbsp;·&nbsp; Esc to close</div>
+</div>
+
+<script>
+(function () {
+  const overlay = document.getElementById('lb-overlay');
+  const lbImg   = document.getElementById('lb-img');
+
+  let scale = 1, ox = 0, oy = 0;
+  let dragging = false, didDrag = false, startX, startY;
+
+  function applyTransform() {
+    lbImg.style.transform = `translate(${ox}px, ${oy}px) scale(${scale})`;
+    lbImg.style.cursor = scale > 1 ? 'grab' : 'zoom-in';
+  }
+
+  function reset() {
+    scale = 1; ox = 0; oy = 0;
+    lbImg.style.transform = '';
+    lbImg.style.cursor = 'zoom-in';
+  }
+
+  function open(src, alt) {
+    lbImg.src = src;
+    lbImg.alt = alt;
+    reset();
+    overlay.classList.add('active');
+  }
+
+  function close() {
+    overlay.classList.remove('active');
+    reset();
+  }
+
+  // Open on thumbnail click — if data-pdf is set, open the PDF instead
+  document.querySelectorAll('.screenshot-wrap img').forEach(img => {
+    img.addEventListener('click', () => {
+      if (img.dataset.pdf) { window.open(img.dataset.pdf, '_blank'); }
+      else { open(img.src, img.alt); }
+    });
+  });
+
+  // Close on backdrop click
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+
+  // Escape key
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  // Scroll to zoom toward cursor
+  lbImg.addEventListener('wheel', e => {
+    e.preventDefault();
+    const factor   = e.deltaY < 0 ? 1.15 : 0.87;
+    const newScale = Math.min(Math.max(scale * factor, 0.8), 14);
+    const cx = window.innerWidth  / 2;
+    const cy = window.innerHeight / 2;
+    const ratio = newScale / scale;
+    ox = (e.clientX - cx) * (1 - ratio) + ox * ratio;
+    oy = (e.clientY - cy) * (1 - ratio) + oy * ratio;
+    scale = newScale;
+    applyTransform();
+  }, { passive: false });
+
+  // Click image to cycle zoom levels
+  lbImg.addEventListener('click', e => {
+    e.stopPropagation();
+    if (didDrag) { didDrag = false; return; }
+    if (scale < 1.5) { scale = 2.5; }
+    else if (scale < 4) { scale = 6; }
+    else { scale = 1; ox = 0; oy = 0; }
+    applyTransform();
+  });
+
+  // Drag to pan
+  lbImg.addEventListener('mousedown', e => {
+    if (scale <= 1) return;
+    dragging = true; didDrag = false;
+    startX = e.clientX - ox;
+    startY = e.clientY - oy;
+    lbImg.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    didDrag = true;
+    ox = e.clientX - startX;
+    oy = e.clientY - startY;
+    applyTransform();
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    lbImg.style.cursor = scale > 1 ? 'grab' : 'zoom-in';
+  });
+})();
+</script>
+
+</body>
+</html>

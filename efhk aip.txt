@@ -1,0 +1,21 @@
+6 HELICOPTER OPERATIONS
+6.1 Operating on FATO H16/H34
+6.1.1. FATO H16/H34 is within ATC service boundary. When performing take-offs from H16 or landings on H34, pilots must exercise caution and visually confirm the absence of obstacles in the front sector.
+Outside the ATC service boundary at APN 4 and between taxiways CL and CN there may be ground traffic unknown to ATC. REF AIP, EFHK AD 2.5 - 1 (APDC).
+
+8 TRAINIG AND INSPECTION IFR AND VFR FLIGHTS, LOCAL IFR AND VFR FLIGHTS AND FLIGHTS WITH HOT-AIR BALLOONS WITHIN EFHK CTR AND TMA
+8.1. Training and inspection IFR and VFR flights, local IFR and VFR flights and flights with hot-air balloons in EFHK TMA are subject to ATC permission and will be accepted for justified reasons only.
+The decisions for granting a permission will be based on the current and expected traffic situation and the judgement of the level of noise impact caused by such activity.
+The following shall be complied:
+The schedule and program of the flight shall be coordinated with Helsinki-Vantaa approach supervisor, TEL + 358 9 6151 3324.
+A flight plan in written shall be filed. The flight program shall be indicated in the flight plan, item 18 RMK.
+The flight will be accepted the traffic situation permitting. During rush-hours at Helsinki-Vantaa flights are subject to limitations.
+In case of VFR flight departing inside the EFHK CTR, the pilot shall request clearance before airborne on EFHK TWR frequency or by calling +358 9 6151 3322.
+8.2 Additional restrictions during parallel approaches
+Training and inspection IFR and VFR flights, local (IFR and VFR) and any VFR flights are not allowed at EFHK CTR and TMA during parallel approaches.
+Excluding:
+- IFR flights, subject to restrictions, solely either departing from EFHK or arriving at EFHK, which have received an airport slot (see para 2.20.1.2); taking in account the published performance requirements during independent parallel operations (see para 2.22.2.8.2 h)
+- SAR or authorized flights
+- state aircraft
+- emergency situations
+- flights which do not affect conducting the parallel approaches.

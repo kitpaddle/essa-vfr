@@ -1,0 +1,367 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vada",
+        "category": "VFR Reporting Point"
+      },
+      "geometry": {
+        "coordinates": [
+          18.214635574719466,
+          59.590735539542806
+        ],
+        "type": "Point"
+      },
+      "id": 4
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vassunda",
+        "category": "VFR Reporting Point"
+      },
+      "geometry": {
+        "coordinates": [
+          17.745097247956522,
+          59.70820386723665
+        ],
+        "type": "Point"
+      },
+      "id": 5
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Skedviken",
+        "category": "VFR Reporting Point"
+      },
+      "geometry": {
+        "coordinates": [
+          18.2549229242029,
+          59.77406785261559
+        ],
+        "type": "Point"
+      },
+      "id": 6
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vallentuna",
+        "category": "VFR Reporting Point"
+      },
+      "geometry": {
+        "coordinates": [
+          18.016389,
+          59.512222
+        ],
+        "type": "Point"
+      },
+      "id": 23
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Markim",
+        "category": "VFR Holding",
+        "description": "Vänstervarv i cirkel där cirkelns västra punkt är Markims kyrka."
+      },
+      "geometry": {
+        "coordinates": [
+          18.068224632042188,
+          59.60411607863293
+        ],
+        "type": "Point"
+      },
+      "id": 3
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Odensala",
+        "category": "VFR Holding",
+        "description": "Vänstervarv i cirkel där Odensala kyrka är cirkelns östra punkt."
+      },
+      "geometry": {
+        "coordinates": [
+          17.847613457408073,
+          59.665889344798615
+        ],
+        "type": "Point"
+      },
+      "id": 4
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Danmark Kyrka",
+        "category": "Church"
+      },
+      "geometry": {
+        "coordinates": [
+          17.740203844448985,
+          59.83140474982767
+        ],
+        "type": "Point"
+      },
+      "id": 5
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Husby Långhundra",
+        "category": "Church"
+      },
+      "geometry": {
+        "coordinates": [
+          18.017542910433548,
+          59.75062224832706
+        ],
+        "type": "Point"
+      },
+      "id": 6
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Skepptuna",
+        "category": "Church"
+      },
+      "geometry": {
+        "coordinates": [
+          18.0931068101099,
+          59.70898088703882
+        ],
+        "type": "Point"
+      },
+      "id": 7
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lunda",
+        "category": "Church"
+      },
+      "geometry": {
+        "coordinates": [
+          18.0462523630043,
+          59.66683974710486
+        ],
+        "type": "Point"
+      },
+      "id": 8
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kårsta kyrka",
+        "category": "Church"
+      },
+      "geometry": {
+        "coordinates": [
+          18.241123032410258,
+          59.65265783807732
+        ],
+        "type": "Point"
+      },
+      "id": 9
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Markim kyrka",
+        "category": "Church"
+      },
+      "geometry": {
+        "coordinates": [
+          18.06223222211287,
+          59.60385684695689
+        ],
+        "type": "Point"
+      },
+      "id": 10
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Husby Årlinghundra",
+        "category": "Church"
+      },
+      "geometry": {
+        "coordinates": [
+          17.882273706040593,
+          59.64011990794688
+        ],
+        "type": "Point"
+      },
+      "id": 11
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Odensala kyrka",
+        "category": "Church"
+      },
+      "geometry": {
+        "coordinates": [
+          17.85061338417256,
+          59.66580381334575
+        ],
+        "type": "Point"
+      },
+      "id": 12
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Frösunda",
+        "category": "Church"
+      },
+      "geometry": {
+        "coordinates": [
+          18.167570884534825,
+          59.6215098033052
+        ],
+        "type": "Point"
+      },
+      "id": 13
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "WA",
+        "category": "Navaid"
+      },
+      "geometry": {
+        "coordinates": [
+          17.91537798045539,
+          59.65575389345901
+        ],
+        "type": "Point"
+      },
+      "id": 14
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ARL",
+        "category": "Navaid"
+      },
+      "geometry": {
+        "coordinates": [
+          17.914473282340452,
+          59.65337381527988
+        ],
+        "type": "Point"
+      },
+      "id": 15
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ANW",
+        "category": "Navaid"
+      },
+      "geometry": {
+        "coordinates": [
+          17.852583,
+          59.713278
+        ],
+        "type": "Point"
+      },
+      "id": 16
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ANE",
+        "category": "Navaid"
+      },
+      "geometry": {
+        "coordinates": [
+          18.059861,
+          59.693972
+        ],
+        "type": "Point"
+      },
+      "id": 17
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ASE",
+        "category": "Navaid"
+      },
+      "geometry": {
+        "coordinates": [
+          17.95736303231186,
+          59.63713333711948
+        ],
+        "type": "Point"
+      },
+      "id": 18
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ASW",
+        "category": "Navaid"
+      },
+      "geometry": {
+        "coordinates": [
+          17.819694,
+          59.587694
+        ],
+        "type": "Point"
+      },
+      "id": 19
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vassunda Flygfält",
+        "category": "Airfield"
+      },
+      "geometry": {
+        "coordinates": [
+          17.72308671052724,
+          59.72112241518283
+        ],
+        "type": "Point"
+      },
+      "id": 20
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hova Flygfält",
+        "category": "Airfield"
+      },
+      "geometry": {
+        "coordinates": [
+          17.778930381323818,
+          59.674827886597626
+        ],
+        "type": "Point"
+      },
+      "id": 21
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vallentuna Flygfält",
+        "category": "Airfield"
+      },
+      "geometry": {
+        "coordinates": [
+          18.038700095255678,
+          59.541806829018356
+        ],
+        "type": "Point"
+      },
+      "id": 22
+    }
+  ]
+}

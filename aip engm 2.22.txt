@@ -1,0 +1,30 @@
+8  VFR flights within Gardermoen CTR
+8.1 Procedures for VFR flights within Gardermoen CTR
+a) Special VFR flight, VFR night and transit flight in ENGM CTR are generally not permitted. ATC may, under certain circumstances, grant permission for such flights, based on prior approval.
+b) Permission to cross overhead the runways or extended centerlines can not be expected.
+c) ATC clearance shall be obtained from Gardermoen TWR.
+d)Two-way radio communication shall be established before flight takes place in CTR. REF ENGM AD 2.18.
+e)Suspension of VFR flights may be expected under limited visibility or low ceiling.
+
+8.2 Geographical positions for VFR ARR and DEP is specified in AD 2 ENGM 6 - 1 Visual Approach Chart.
+
+8.3 To avoid conflict with TFC using the parallel RWY, the following procedures apply, unless otherwise instructed or cleared by ATC:
+- TFC using RWY 01R, 19R or FATO 19 shall make all turns associated with take-off and landing to the right,
+- the airspace between the parallel RWY, including the airspace between extended edge lines of RWY, must not be penetrated during APP or DEP,
+- permission to cross overhead the RWY or extended CL may not be expected,
+- minor delays, for traffic to/from FATO, may be expected due to wake vortex separation RWY 01L/19R.
+
+8.4 ARR VFR flight shall establish two-way radio communication with Gardermoen TWR no later than passing the following reporting points:
+- Råsjøen, 601230N 0104810E
+- Vormsund, 600918N 0112505E
+
+8.5 When cleared DCT RWY base leg or final, ARR ACFT shall join final within 1 NM FM RWY THR.
+When cleared DCT final FATO, helicopter shall be established on final track parallel to and west of RWY 01L/19R.
+
+8.6 DEP VFR flights shall request start-up from Gardermoen Delivery.
+
+8.7 Standard turn direction after DEP is towards Nannestad when RWY 01L/19R or FATO 01/19 is used, and towards Nordkisa when RWY 01R/19L is used.
+
+8.8 After take-off, commence turn to cleared position/direction at 1200 FT (1700 FT for ACFT with MTOM above 5700 KG), EXC helicopters flying VFR.
+
+8.9 SAR services and ACFT on a police or MIL mission are exempted from the provisions regarding Special VFR, VFR night and transit flights; but shall at all times adhere to the instructions and clearances given by ATC.
