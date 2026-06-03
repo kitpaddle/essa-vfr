@@ -85,6 +85,47 @@
     body { font-size: 12px; }
     .page { padding: 40px 50px; }
   }
+
+  /* Table of contents sidebar */
+  #toc {
+    position: fixed;
+    top: 48px;
+    left: max(12px, calc(50% - 560px));
+    width: 155px;
+    max-height: calc(100vh - 96px);
+    overflow-y: auto;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11.5px;
+    line-height: 1.5;
+    z-index: 50;
+  }
+  #toc-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  #toc a {
+    display: block;
+    padding: 3px 0 3px 10px;
+    border-left: 2px solid transparent;
+    color: #999;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  #toc a.h3 { padding-left: 18px; font-size: 11px; }
+  #toc a:hover { color: #2a5db0; }
+  #toc a.active { color: #2a5db0; border-left-color: #2a5db0; font-weight: 600; }
+  #toc::-webkit-scrollbar { width: 3px; }
+  #toc::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 2px; }
+  @media (max-width: 1160px) { #toc { display: none; } }
 </style>
 </head>
 <body>
@@ -1019,6 +1060,56 @@
     dragging = false;
     lbImg.style.cursor = scale > 1 ? 'grab' : 'zoom-in';
   });
+})();
+</script>
+
+<script>
+(function () {
+  const headings = Array.from(document.querySelectorAll('.section h2, .section h3'));
+  if (!headings.length) return;
+
+  headings.forEach((h, i) => { if (!h.id) h.id = 'sec-' + i; });
+
+  const nav = document.createElement('nav');
+  nav.id = 'toc';
+  const title = document.createElement('div');
+  title.id = 'toc-title';
+  title.textContent = 'Innehåll';
+  nav.appendChild(title);
+
+  const links = headings.map(h => {
+    const a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent.trim();
+    a.className = h.tagName.toLowerCase();
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', '#' + h.id);
+    });
+    nav.appendChild(a);
+    return { a, h };
+  });
+
+  document.body.appendChild(nav);
+
+  function updateActive() {
+    const y = window.scrollY + window.innerHeight * 0.25;
+    let active = links[0];
+    for (const link of links) {
+      if (link.h.getBoundingClientRect().top + window.scrollY <= y) active = link;
+    }
+    links.forEach(l => l.a.classList.remove('active'));
+    active.a.classList.add('active');
+    const navEl = document.getElementById('toc');
+    const aRect = active.a.getBoundingClientRect();
+    const nRect = navEl.getBoundingClientRect();
+    if (aRect.bottom > nRect.bottom) navEl.scrollTop += aRect.bottom - nRect.bottom + 8;
+    else if (aRect.top < nRect.top) navEl.scrollTop -= nRect.top - aRect.top + 8;
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
 })();
 </script>
 
