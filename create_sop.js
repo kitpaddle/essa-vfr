@@ -209,7 +209,7 @@ const doc = new Document({
           border: { bottom: { style: BorderStyle.SINGLE, size: 6, color: "1F4E79", space: 1 } },
           children: [
             new TextRun({ text: "ESSA Stockholm Arlanda  –  Helikopter- och VFR-procedurer", bold: true, color: "1F4E79", size: 18 }),
-            new TextRun({ text: "\tINTERNT UTKAST", color: "C00000", size: 18 })
+            new TextRun({ text: "\tUTKAST", color: "C00000", size: 18 })
           ],
           tabStops: [{ type: "right", position: 8826 }]
         })]
@@ -251,16 +251,16 @@ const doc = new Document({
       space(),
       new Paragraph({
         alignment: AlignmentType.CENTER, spacing: { after: 160 },
-        children: [new TextRun({ text: "INTERNT UTKAST – EJ PUBLICERAT", bold: true, size: 26, color: "C00000" })]
+        children: [new TextRun({ text: "UTKAST – BASERAT PÅ OFFENTLIGA KÄLLOR", bold: true, size: 26, color: "C00000" })]
       }),
       space(2),
       makeTable(
         ["Fält", "Uppgift"],
         [
           ["Datum", "2026-05-21"],
-          ["Status", "Internt utkast för granskning"],
-          ["Avsedd mottagare", "ESSA TWR/APP chefer, LFV"],
-          ["Nästa steg", "Intern granskning → SOP → AIP-publicering"],
+          ["Status", "Utkast / förslag (v0.1)"],
+          ["Källor", "Enbart offentligt tillgänglig information (AIP, VAC-kartor, öppen flygspårningsdata)"],
+          ["Nästa steg", "Granskning → SOP → AIP-publicering"],
         ],
         [3000, 6026]
       ),
@@ -284,7 +284,7 @@ const doc = new Document({
       bullet("Visa hur jämförbara flygplatser i Nordeuropa hanterar helikoptertrafik genom publicerade kartor och procedurer"),
       bullet("Lägga fram ett konkret förslag på standardiserade rutter, waypoints och procedurer anpassade för ESSA"),
       space(),
-      p("Dokumentet är ett internt arbetsmaterial avsett för granskning av ESSA TWR/APP och LFV, och utgör ett underlag inför eventuell publicering i AIP Sverige."),
+      p("Dokumentet bygger enbart på offentligt tillgänglig information och utgör ett diskussionsunderlag inför eventuell publicering i AIP Sverige."),
       space(),
       divider(),
       pageBreak(),
@@ -547,7 +547,7 @@ const doc = new Document({
       makeTable(
         ["Prioritet", "Åtgärd", "Tidsram"],
         [
-          ["Hög",    "Intern granskning av detta dokument, ESSA TWR/APP + LFV",      "Q2 2026"],
+          ["Hög",    "Granskning av detta dokument, ESSA TWR/APP + LFV",      "Q2 2026"],
           ["Hög",    "Formell definition av TWR holding point (namn + koordinat)",   "Q2 2026"],
           ["Hög",    "Bekräfta FATO 07/25 koordinat när bygget är klart",            "2026"],
           ["Medium", "Beställ dedikerad helikopterkarta 1:50 000 (LFV Karttjänst)",  "Q3 2026"],
@@ -560,7 +560,7 @@ const doc = new Document({
       divider(),
       new Paragraph({
         alignment: AlignmentType.CENTER, spacing: { before: 240 },
-        children: [new TextRun({ text: "Slut på dokument – ESSA Helikopter/VFR SOP v0.1 – Internt utkast", italics: true, size: 18, color: "888888" })]
+        children: [new TextRun({ text: "Slut på dokument – ESSA Helikopter/VFR SOP v0.1 – Utkast", italics: true, size: 18, color: "888888" })]
       }),
     ]
   }]
